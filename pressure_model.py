@@ -111,7 +111,7 @@ def rate_players(b, player_col, name_col, role):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--data-pack", required=True, type=Path, help="Path to the supplied data_pack.zip")
-    ap.add_argument("--output-dir", type=Path, default=Path("outputs"))
+    ap.add_argument("--output-dir", type=Path, default=Path("."))
     args = ap.parse_args()
     pack = read_pack(args.data_pack)
     b = build_delivery_table(pack)
@@ -122,6 +122,20 @@ def main():
         df.to_csv(args.output_dir / f"{name}_leaderboard.csv", index=False)
         top = df.head(10).copy()
         top.to_csv(args.output_dir / f"{name}_top10.csv", index=False)
+    data_dir = args.output_dir / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    rankings = {"batters": bat.to_dict(orient="records"), "bowlers": bowl.to_dict(orient="records")}
+    (data_dir / "rankings.json").write_text(json.dumps(rankings, separators=(",", ":")), encoding="utf-8")
+    summary = {
+        "matches": int(b.match_id.nunique()),
+        "deliveries": int(len(b)),
+        "pressureDeliveries": int(b.pressure.sum()),
+        "eligibleBatters": int(len(bat)),
+        "eligibleBowlers": int(len(bowl)),
+        "dateStart": pd.to_datetime(b.match_date).min().strftime("%Y-%m-%d"),
+        "dateEnd": pd.to_datetime(b.match_date).max().strftime("%Y-%m-%d"),
+    }
+    (data_dir / "summary.json").write_text(json.dumps(summary, separators=(",", ":")), encoding="utf-8")
     print(f"Matches: {b.match_id.nunique():,}; standard-innings deliveries: {len(b):,}; pressure deliveries: {int(b.pressure.sum()):,}")
     print(f"T20/T20I formats: {b.match_format.value_counts().to_dict()}")
     print("Rankings saved in", args.output_dir.resolve())
