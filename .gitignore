@@ -5,3 +5,4 @@ node_modules/
 render-app/
 Thumbs.db
 .DS_Store
+video/rendered/

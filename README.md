@@ -10,6 +10,12 @@ Explore the deployed dashboard and its interactive player rankings:
 
 ![Pressure Playbook dashboard preview](screenshots/dashboard-preview.png)
 
+## Project video
+
+Watch the 40-second, 4:5 animated explainer with its original instrumental score at [pressure-selector-rr.onrender.com/video](https://pressure-selector-rr.onrender.com/video), or download `pressure-playbook-linkedin.mp4` for LinkedIn. The film explains the shortlist, its pressure comparison and sample-size checks, and the model's limits. It was made for Unstop's SupeRR Selector Season 2 challenge for the Rajasthan Royals. This is an independent project, not an official Rajasthan Royals product.
+
+The H.264/AAC video is 1080 × 1350. Its LinkedIn cover is `video/linkedin-cover.jpg`.
+
 ## What it does
 
 - Ranks eligible batters and bowlers by pressure output relative to each player's own ordinary baseline.
