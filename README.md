@@ -10,19 +10,19 @@ Explore the deployed dashboard and its interactive player rankings:
 
 ### Live dashboard home
 
-![Live Pressure Playbook dashboard home view](screenshots/dashboard-home.png)
+![Live Pressure Playbook dashboard home view](screenshots/dashboard-home.jpg)
 
 ### Batter rankings
 
-![Interactive batter rankings with player scores and pressure samples](screenshots/batter-rankings.png)
+![Interactive batter rankings with player scores and pressure samples](screenshots/batter-rankings.jpg)
 
 ### Bowler rankings
 
-![Interactive bowler rankings with player scores and pressure samples](screenshots/bowler-rankings.png)
+![Interactive bowler rankings with player scores and pressure samples](screenshots/bowler-rankings.jpg)
 
 ### Methodology
 
-![Pressure definition and batter and bowler scoring formulas](screenshots/methodology.png)
+![Pressure definition and batter and bowler scoring formulas](screenshots/methodology.jpg)
 
 ## What it does
 
