@@ -119,7 +119,7 @@ const server = createServer((req, res) => {
   const range = req.headers.range;
   if (extname(file).toLowerCase() === '.mp4') headers['Accept-Ranges'] = 'bytes';
   if (range && extname(file).toLowerCase() === '.mp4') {
-    const match = /^bytes=(\\d*)-(\\d*)$/.exec(range);
+    const match = /^bytes=(\d*)-(\d*)$/.exec(range);
     if (!match || (!match[1] && !match[2])) {
       res.writeHead(416, { 'Content-Range': `bytes */${stats.size}` });
       return res.end();
