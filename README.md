@@ -56,7 +56,9 @@ This writes the full leaderboards, top-ten CSVs, and the API's `data/rankings.js
 
 ## Deploy on Render
 
-The root `render.yaml` defines a free Node web service with `/healthz` as its health check. Connect this repository in Render and create a Blueprint from `render.yaml`. Render builds from the repository and runs `npm start`.
+The root `Dockerfile` packages the dashboard and read-only API. The GitHub Actions workflow publishes `ghcr.io/abhinav2404-hub/rajasthan-royals-pressure-selector:latest` to GitHub Container Registry. After the first image is published, set the package visibility to public, then create a Render Web Service using **Existing Image** and that image URL. Render runs the container and serves the app; GitHub is only the source and image registry. See [Render's prebuilt image deployment guide](https://render.com/docs/deploying-an-image).
+
+The root `render.yaml` is also available for the Git-backed Blueprint route if you prefer to connect the repository directly. The app uses `PORT`, binds to `0.0.0.0`, and exposes `/healthz` for service health.
 
 ## Submission files
 
