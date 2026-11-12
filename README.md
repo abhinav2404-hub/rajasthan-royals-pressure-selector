@@ -8,7 +8,21 @@ Explore the deployed dashboard and its interactive player rankings:
 
 [pressure-selector-rr.onrender.com](https://pressure-selector-rr.onrender.com)
 
-![Pressure Playbook dashboard preview](screenshots/dashboard-preview.png)
+### Live dashboard home
+
+![Live Pressure Playbook dashboard home view](screenshots/dashboard-home.png)
+
+### Batter rankings
+
+![Interactive batter rankings with player scores and pressure samples](screenshots/batter-rankings.png)
+
+### Bowler rankings
+
+![Interactive bowler rankings with player scores and pressure samples](screenshots/bowler-rankings.png)
+
+### Methodology
+
+![Pressure definition and batter and bowler scoring formulas](screenshots/methodology.png)
 
 ## What it does
 
