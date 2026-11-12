@@ -1,1 +1,8 @@
-{"matches":867,"pressureDeliveries":76933,"eligibleBatters":145,"eligibleBowlers":176}
+{
+  "matches": 867,
+  "pressureDeliveries": 76933,
+  "eligibleBatters": 145,
+  "eligibleBowlers": 176,
+  "totalBatters": 888,
+  "totalBowlers": 647
+}

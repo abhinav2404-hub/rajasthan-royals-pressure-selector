@@ -63,7 +63,11 @@ const server = createServer((req, res) => {
     if (type !== 'batters' && type !== 'bowlers') {
       return json(res, 400, { error: 'type must be batters or bowlers' });
     }
-    let rows = rankings[type];
+    const eligibility = url.searchParams.get('eligibility') ?? 'qualified';
+    if (eligibility !== 'qualified' && eligibility !== 'all') {
+      return json(res, 400, { error: 'eligibility must be qualified or all' });
+    }
+    let rows = eligibility === 'all' ? rankings[type] : rankings[type].filter(row => row.eligible !== false);
     const search = (url.searchParams.get('search') ?? '').trim().toLocaleLowerCase();
     if (search) rows = rows.filter(row => row.player.toLocaleLowerCase().includes(search));
     const limit = url.searchParams.get('limit');

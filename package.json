@@ -4,5 +4,9 @@
   "private": true,
   "type": "module",
   "engines": { "node": ">=20" },
-  "scripts": { "build": "node build-dashboard.js", "start": "node server.js" }
+  "scripts": {
+    "build": "node build-dashboard.js",
+    "start": "node server.js",
+    "data:build": "node generate-rankings.js"
+  }
 }
