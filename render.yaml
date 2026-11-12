@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: pressure-selector-rr
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeployTrigger: commit
