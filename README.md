@@ -18,6 +18,9 @@ Watch the 40-second, 4:5 animated explainer with its original instrumental score
 
 The MP4 is encoded at 1080 × 1350 with H.264 video and AAC audio. Its scenes are built from original artwork and the clean dashboard screenshots in `screenshots/`. The LinkedIn cover image is in [`video/linkedin-cover.jpg`](video/linkedin-cover.jpg).
 
+[![Watch the Pressure Playbook video](video/linkedin-cover.jpg)](pressure-playbook-linkedin.mp4)
+
+
 ## Dashboard screenshots
 
 **Dashboard overview**
