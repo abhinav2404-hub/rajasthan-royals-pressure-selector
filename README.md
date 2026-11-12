@@ -2,6 +2,14 @@
 
 An evidence-led T20/T20I pressure-performance explorer, built for the SupeRR Selector Season 2 challenge. The interface uses an original Rajasthan Royals jersey-inspired pink and blue palette and original vector artwork; it is an independent fan project and is not affiliated with the team.
 
+## Live dashboard
+
+Explore the deployed dashboard and its interactive player rankings:
+
+[pressure-selector-rr.onrender.com](https://pressure-selector-rr.onrender.com)
+
+![Pressure Playbook dashboard preview](screenshots/dashboard-preview.png)
+
 ## What it does
 
 - Ranks eligible batters and bowlers by pressure output relative to each player's own ordinary baseline.
