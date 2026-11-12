@@ -17,6 +17,7 @@ const mime = {
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
   '.ico': 'image/x-icon',
+  '.mp4': 'video/mp4',
 };
 
 function json(res, status, value) {
@@ -63,11 +64,7 @@ const server = createServer((req, res) => {
     if (type !== 'batters' && type !== 'bowlers') {
       return json(res, 400, { error: 'type must be batters or bowlers' });
     }
-    const eligibility = url.searchParams.get('eligibility') ?? 'qualified';
-    if (eligibility !== 'qualified' && eligibility !== 'all') {
-      return json(res, 400, { error: 'eligibility must be qualified or all' });
-    }
-    let rows = eligibility === 'all' ? rankings[type] : rankings[type].filter(row => row.eligible !== false);
+    let rows = rankings[type];
     const search = (url.searchParams.get('search') ?? '').trim().toLocaleLowerCase();
     if (search) rows = rows.filter(row => row.player.toLocaleLowerCase().includes(search));
     const limit = url.searchParams.get('limit');
@@ -99,19 +96,44 @@ const server = createServer((req, res) => {
     return json(res, 400, { error: 'Invalid path encoding' });
   }
   if (pathname === '/') pathname = '/index.html';
+  if (pathname === '/video') pathname = '/video.html';
   const file = resolve(PUBLIC, `.${pathname}`);
   if (file !== PUBLIC && !file.startsWith(PUBLIC + sep)) {
     return json(res, 403, { error: 'Forbidden' });
   }
+  let stats;
   try {
-    if (!statSync(file).isFile()) return json(res, 404, { error: 'Not found' });
+    stats = statSync(file);
+    if (!stats.isFile()) return json(res, 404, { error: 'Not found' });
   } catch {
     return json(res, 404, { error: 'Not found' });
   }
-  res.writeHead(200, {
+  const headers = {
     'Content-Type': mime[extname(file).toLowerCase()] ?? 'application/octet-stream',
     'Cache-Control': extname(file) === '.html' ? 'no-cache' : 'public, max-age=300',
-  });
+  };
+  const range = req.headers.range;
+  if (extname(file).toLowerCase() === '.mp4') headers['Accept-Ranges'] = 'bytes';
+  if (range && extname(file).toLowerCase() === '.mp4') {
+    const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+    if (!match || (!match[1] && !match[2])) {
+      res.writeHead(416, { 'Content-Range': `bytes */${stats.size}` });
+      return res.end();
+    }
+    const start = match[1] ? Number(match[1]) : Math.max(0, stats.size - Number(match[2]));
+    const end = match[2] && match[1] ? Math.min(Number(match[2]), stats.size - 1) : stats.size - 1;
+    if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end || start >= stats.size) {
+      res.writeHead(416, { 'Content-Range': `bytes */${stats.size}` });
+      return res.end();
+    }
+    headers['Content-Length'] = end - start + 1;
+    headers['Content-Range'] = `bytes ${start}-${end}/${stats.size}`;
+    res.writeHead(206, headers);
+    if (req.method === 'HEAD') return res.end();
+    return createReadStream(file, { start, end }).pipe(res);
+  }
+  headers['Content-Length'] = stats.size;
+  res.writeHead(200, headers);
   if (req.method === 'HEAD') return res.end();
   createReadStream(file).pipe(res);
 });
@@ -120,3 +142,4 @@ const port = Number(process.env.PORT || 10000);
 server.listen(port, '0.0.0.0', () => {
   console.log(`Pressure Selector listening on 0.0.0.0:${port}`);
 });
+

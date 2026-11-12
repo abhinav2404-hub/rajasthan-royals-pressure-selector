@@ -2,28 +2,6 @@
 
 An evidence-led T20/T20I pressure-performance explorer, built for the SupeRR Selector Season 2 challenge. The interface uses an original Rajasthan Royals jersey-inspired pink and blue palette and original vector artwork; it is an independent fan project and is not affiliated with the team.
 
-## Live dashboard
-
-Explore the deployed dashboard and its interactive player rankings:
-
-[pressure-selector-rr.onrender.com](https://pressure-selector-rr.onrender.com)
-
-### Live dashboard home
-
-![Live Pressure Playbook dashboard home view](screenshots/dashboard-home.jpg)
-
-### Batter rankings
-
-![Interactive batter rankings with player scores and pressure samples](screenshots/batter-rankings.jpg)
-
-### Bowler rankings
-
-![Interactive bowler rankings with player scores and pressure samples](screenshots/bowler-rankings.jpg)
-
-### Methodology
-
-![Pressure definition and batter and bowler scoring formulas](screenshots/methodology.jpg)
-
 ## What it does
 
 - Ranks eligible batters and bowlers by pressure output relative to each player's own ordinary baseline.
@@ -33,6 +11,12 @@ Explore the deployed dashboard and its interactive player rankings:
 - Includes an offline snapshot in the HTML and loads the same packaged rankings from the API when hosted.
 
 The RR colors are a visual theme. The rankings use eligible players across the supplied IPL and T20I dataset; they are not limited to Rajasthan Royals squad members.
+
+## Project video
+
+Watch the 40-second, 4:5 animated explainer with its original instrumental score at [pressure-selector-rr.onrender.com/video](https://pressure-selector-rr.onrender.com/video), or [download the MP4](pressure-playbook-linkedin.mp4) for LinkedIn. The film covers the purpose of the shortlist, the pressure comparison, sample-size checks, and the limits of the model. It was made for Unstop's SupeRR Selector Season 2 challenge for the Rajasthan Royals. This remains an independent project, not an official Rajasthan Royals product.
+
+The MP4 is encoded at 1080 × 1350 with H.264 video and AAC audio. Its scenes are built from original artwork and the clean dashboard screenshots in `screenshots/`. The LinkedIn cover image is in [`video/linkedin-cover.jpg`](video/linkedin-cover.jpg).
 
 ## Run locally
 
@@ -87,3 +71,4 @@ The root `render.yaml` is also available for the Git-backed Blueprint route if y
 - `batter_top10.csv` and `bowler_top10.csv` preserve the two ordered lists for the Unstop selectors.
 - `pressure_performance_methodology.pdf` explains the pressure definition, scoring, fair-comparison checks, evidence, reliability, limitations, and reproduction steps.
 - `UNSTOP_SUBMISSION_GUIDE.md` gives the ranked names in entry order and a short upload checklist.
+
